@@ -1,0 +1,11 @@
+use_frameworks!
+
+target 'TabbedContainer_Example' do
+  pod 'TabbedContainer', :path => '../'
+
+  target 'TabbedContainer_Tests' do
+    inherit! :search_paths
+
+    
+  end
+end
