@@ -26,9 +26,6 @@ class ViewController: UIViewController {
         let items = [
             TabbedContainerItem(title: "VC1", viewController: vc1),
             TabbedContainerItem(title: "VC2", viewController: vc2),
-            TabbedContainerItem(title: "VC3", viewController: vc3),
-            TabbedContainerItem(title: "VC1", viewController: vc1),
-            TabbedContainerItem(title: "VC2", viewController: vc2),
             TabbedContainerItem(title: "VC3", viewController: vc3)
         ]
         

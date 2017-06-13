@@ -57,6 +57,11 @@ public class TabbedContainerHeader: UIView {
         super.awakeFromNib()
     }
     
+    public override func layoutSubviews() {
+        super.layoutSubviews()
+        self.highlightTitle(at: selectedTitleIndex)
+    }
+    
     // MARK: - Init -
     override public init(frame: CGRect) {
         super.init(frame: frame)
@@ -96,7 +101,7 @@ public class TabbedContainerHeader: UIView {
         
         tabIndicatorLeadingConstraint = NSLayoutConstraint(item: tabIndicator, attribute: .leading, relatedBy: .equal, toItem: mainContainer , attribute: .leading  , multiplier: 1.0, constant: 0.0)
         tabIndicatorLeadingConstraint!.isActive = true
-        NSLayoutConstraint(item: tabIndicator, attribute: .height, relatedBy: .equal, toItem: nil , attribute: .notAnAttribute, multiplier: 1.0, constant: 1.0).isActive = true
+        NSLayoutConstraint(item: tabIndicator, attribute: .height, relatedBy: .equal, toItem: nil , attribute: .notAnAttribute, multiplier: 1.0, constant: 3.0).isActive = true
         NSLayoutConstraint(item: tabIndicator, attribute: .bottom, relatedBy: .equal, toItem: mainContainer , attribute: .bottom, multiplier: 1.0, constant: 0.0).isActive = true
         tabIndicatorWidthConstraint = NSLayoutConstraint(item: tabIndicator, attribute: .width, relatedBy: .equal, toItem: nil, attribute: .notAnAttribute, multiplier: 1.0, constant: 1.0)
         tabIndicatorWidthConstraint!.isActive = true
@@ -143,6 +148,8 @@ public class TabbedContainerHeader: UIView {
                 NSLayoutConstraint(item: item, attribute: .trailing, relatedBy: .equal, toItem: self.mainContainer, attribute: .trailing, multiplier: 1.0, constant: 0.0).isActive = true
             }
         }
+        
+        self.layoutSubviews()
     }
     
     private func addGestureRecognizer(to item: TabItem) {
@@ -162,11 +169,14 @@ public class TabbedContainerHeader: UIView {
     
     private func moveIndicator(to index: Int) {
         let item = items[index]
-        let width = item.frame.width
-        let originX = item.frame.minX
         
-        tabIndicatorWidthConstraint?.constant = width
-        tabIndicatorLeadingConstraint?.constant = originX
+        tabIndicatorWidthConstraint?.isActive = false
+        tabIndicatorWidthConstraint = NSLayoutConstraint(item: tabIndicator, attribute: .width, relatedBy: .equal, toItem: item, attribute: .width, multiplier: 1.0, constant: 1.0)
+        tabIndicatorWidthConstraint!.isActive = true
+        
+        tabIndicatorLeadingConstraint?.isActive = false
+        tabIndicatorLeadingConstraint = NSLayoutConstraint(item: tabIndicator, attribute: .leading, relatedBy: .equal, toItem: item , attribute: .leading  , multiplier: 1.0, constant: 0.0)
+        tabIndicatorLeadingConstraint!.isActive = true
         
         UIView.animate(withDuration: 0.25, animations: { [weak self] in
             guard let `self` = self else { return }
@@ -192,6 +202,7 @@ public class TabbedContainerHeader: UIView {
     public func highlightTitleIndex(_ index: Int) {
         guard index < items.count else { return }
         
+        self.selectedTitleIndex = index
         self.highlightTitle(at: index)
         self.moveIndicator(to: index)
     }
