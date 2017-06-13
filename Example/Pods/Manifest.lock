@@ -1,0 +1,16 @@
+PODS:
+  - TabbedContainer (0.1.0)
+
+DEPENDENCIES:
+  - TabbedContainer (from `../`)
+
+EXTERNAL SOURCES:
+  TabbedContainer:
+    :path: ../
+
+SPEC CHECKSUMS:
+  TabbedContainer: 377ee38258074fc62e36f1c3de305237fdb44d7e
+
+PODFILE CHECKSUM: dbf750123bd8343081fa2a41909ff37903eb3257
+
+COCOAPODS: 1.2.1

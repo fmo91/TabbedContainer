@@ -30,7 +30,7 @@
 /* Begin PBXFileReference section */
 		2DF6B09F4FE42E764549EFE8 /* Pods-TabbedContainer_Tests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TabbedContainer_Tests.release.xcconfig"; path = "Pods/Target Support Files/Pods-TabbedContainer_Tests/Pods-TabbedContainer_Tests.release.xcconfig"; sourceTree = "<group>"; };
 		3F43E5623A8B3D0AB011CC3B /* Pods_TabbedContainer_Example.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_TabbedContainer_Example.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		5C0C70A8A369A33F19D28647 /* TabbedContainer.podspec */ = {isa = PBXFileReference; includeInIndex = 1; name = TabbedContainer.podspec; path = ../TabbedContainer.podspec; sourceTree = "<group>"; };
+		5C0C70A8A369A33F19D28647 /* TabbedContainer.podspec */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; name = TabbedContainer.podspec; path = ../TabbedContainer.podspec; sourceTree = "<group>"; };
 		607FACD01AFB9204008FA782 /* TabbedContainer_Example.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TabbedContainer_Example.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		607FACD41AFB9204008FA782 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		607FACD51AFB9204008FA782 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -42,11 +42,11 @@
 		607FACEA1AFB9204008FA782 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		607FACEB1AFB9204008FA782 /* Tests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Tests.swift; sourceTree = "<group>"; };
 		6240A71962629CFDFEB0945A /* Pods-TabbedContainer_Example.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TabbedContainer_Example.release.xcconfig"; path = "Pods/Target Support Files/Pods-TabbedContainer_Example/Pods-TabbedContainer_Example.release.xcconfig"; sourceTree = "<group>"; };
-		8AC8050A8C2AF727FB5A4A92 /* LICENSE */ = {isa = PBXFileReference; includeInIndex = 1; name = LICENSE; path = ../LICENSE; sourceTree = "<group>"; };
+		8AC8050A8C2AF727FB5A4A92 /* LICENSE */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; name = LICENSE; path = ../LICENSE; sourceTree = "<group>"; };
 		C551F56E4F68D60FFD1366ED /* Pods-TabbedContainer_Example.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TabbedContainer_Example.debug.xcconfig"; path = "Pods/Target Support Files/Pods-TabbedContainer_Example/Pods-TabbedContainer_Example.debug.xcconfig"; sourceTree = "<group>"; };
 		D953D2306876A1A9090A4539 /* Pods_TabbedContainer_Tests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_TabbedContainer_Tests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		F114A549C1DFBAFD24529466 /* Pods-TabbedContainer_Tests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TabbedContainer_Tests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-TabbedContainer_Tests/Pods-TabbedContainer_Tests.debug.xcconfig"; sourceTree = "<group>"; };
-		FF1178BC4D7465F0A7B50E87 /* README.md */ = {isa = PBXFileReference; includeInIndex = 1; name = README.md; path = ../README.md; sourceTree = "<group>"; };
+		FF1178BC4D7465F0A7B50E87 /* README.md */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = net.daringfireball.markdown; name = README.md; path = ../README.md; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -104,6 +104,7 @@
 		607FACD21AFB9204008FA782 /* Example for TabbedContainer */ = {
 			isa = PBXGroup;
 			children = (
+				7E20010E1EEF12720093C184 /* Controllers */,
 				607FACD51AFB9204008FA782 /* AppDelegate.swift */,
 				607FACD71AFB9204008FA782 /* ViewController.swift */,
 				607FACD91AFB9204008FA782 /* Main.storyboard */,
@@ -148,6 +149,13 @@
 				8AC8050A8C2AF727FB5A4A92 /* LICENSE */,
 			);
 			name = "Podspec Metadata";
+			sourceTree = "<group>";
+		};
+		7E20010E1EEF12720093C184 /* Controllers */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Controllers;
 			sourceTree = "<group>";
 		};
 		FF1C1965F821331DDBCD5D2C /* Frameworks */ = {

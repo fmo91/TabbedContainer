@@ -1,0 +1,6 @@
+framework module TabbedContainer {
+  umbrella header "TabbedContainer-umbrella.h"
+
+  export *
+  module * { export * }
+}
