@@ -18,7 +18,7 @@ final class TabbedMainContainerController: UIPageViewController, UIPageViewContr
     private(set) public var _viewControllers: [Int: UIViewController] = [:]
     private(set) public var viewControllerCreators: [Int: () -> UIViewController] = [:]
     weak var tabDelegate: TabbedMainContainerControllerDelegate?
-    private var destinationViewControllerIndex: Int = 0
+    private var viewControllerIndex: Int = 0
     
     // MARK: - Init -
     override init(transitionStyle style: UIPageViewControllerTransitionStyle, navigationOrientation: UIPageViewControllerNavigationOrientation, options: [String : Any]? = nil) {
@@ -51,7 +51,7 @@ final class TabbedMainContainerController: UIPageViewController, UIPageViewContr
     }
     
     // MARK: - Utils -
-    public func viewController(at index: Int) -> UIViewController? {
+    private func viewController(at index: Int) -> UIViewController? {
         if !_viewControllers.keys.contains(index) {
             if let creator = viewControllerCreators[index] {
                 let controller = creator()
@@ -62,15 +62,32 @@ final class TabbedMainContainerController: UIPageViewController, UIPageViewContr
         return _viewControllers[index]
     }
     
+    public func navigateToViewController(at index: Int) {
+        guard let direction = self.direction(for: index) else { return }
+        guard let destinationViewController = viewController(at: index) else { return }
+        viewControllerIndex = index
+        self.setViewControllers([destinationViewController], direction: direction, animated: true, completion: nil)
+    }
+    
+    private func direction(for index: Int) -> UIPageViewControllerNavigationDirection? {
+        if index > viewControllerIndex {
+            return .forward
+        } else if index < viewControllerIndex {
+            return .reverse
+        } else {
+            return nil
+        }
+    }
+    
     // MARK: - UIPageViewControllerDelegate, UIPageViewControllerDataSource -
     func pageViewController(_ pageViewController: UIPageViewController, willTransitionTo pendingViewControllers: [UIViewController]) {
         guard let destinationViewController = pendingViewControllers.first else { return }
-        self.destinationViewControllerIndex = destinationViewController.view.tag
+        self.viewControllerIndex = destinationViewController.view.tag
     }
     
     public func pageViewController(_ pageViewController: UIPageViewController, didFinishAnimating finished: Bool, previousViewControllers: [UIViewController], transitionCompleted completed: Bool) {
         if finished && completed {
-            self.tabDelegate?.tabbedMainContainerControllerDidScroll(to: self.destinationViewControllerIndex)
+            self.tabDelegate?.tabbedMainContainerControllerDidScroll(to: self.viewControllerIndex)
         }
     }
     

@@ -26,7 +26,7 @@ import UIKit
         return container
     }()
     
-    private var containerController: TabbedMainContainerController?
+    fileprivate var containerController: TabbedMainContainerController?
     public var controller: UIViewController? {
         didSet {
             configureForState()
@@ -71,6 +71,7 @@ import UIKit
     
     // MARK: - Configuration -
     private func configureViewHierarchy() {
+        header.delegate = self
         self.addSubview(header)
         self.addSubview(container)
     }
@@ -109,6 +110,13 @@ import UIKit
         self.containerController?.setControllerCreators(items.map { $0.viewController })
     }
     
+}
+
+// MARK: - TabbedContainerHeaderDelegate -
+extension TabbedContainer: TabbedContainerHeaderDelegate {
+    func tabbedContainerHeaderDidSelectItem(atIndex index: Int) {
+        self.containerController?.navigateToViewController(at: index)
+    }
 }
 
 // MARK: - TabbedMainContainerControllerDelegate -

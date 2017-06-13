@@ -10,6 +10,10 @@ import UIKit
 
 public class TabIndicator: UIView {}
 
+protocol TabbedContainerHeaderDelegate: class {
+    func tabbedContainerHeaderDidSelectItem(atIndex index: Int)
+}
+
 public class TabbedContainerHeader: UIView {
     // MARK: - Views -
     private(set) public var items: [TabItem] = []
@@ -46,6 +50,7 @@ public class TabbedContainerHeader: UIView {
     private(set) public var titles: [String] = []
     public var selectedTitleIndex: Int = 0
     public var maximumSimultaneousItems: Int = 3
+    internal weak var delegate: TabbedContainerHeaderDelegate?
     
     // MARK: - Life cycle -
     override open func awakeFromNib() {
@@ -116,6 +121,7 @@ public class TabbedContainerHeader: UIView {
         for (index, item) in tabItems.enumerated() {
             self.mainContainer.addSubview(item)
             self.addGestureRecognizer(to: item)
+            item.tag = index
             item.translatesAutoresizingMaskIntoConstraints = false
             
             if index == 0 {
@@ -140,7 +146,7 @@ public class TabbedContainerHeader: UIView {
     }
     
     private func addGestureRecognizer(to item: TabItem) {
-        item.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(tabItemPressed(tabItem:))))
+        item.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(tabItemPressed)))
     }
     
     private func highlightFirstTitle() {
@@ -190,8 +196,11 @@ public class TabbedContainerHeader: UIView {
         self.moveIndicator(to: index)
     }
     
-    @objc private func tabItemPressed(tabItem: TabItem) {
-        
+    @objc private func tabItemPressed(sender: UITapGestureRecognizer) {
+        guard let tabItem = sender.view as? TabItem else { return }
+        let index: Int = tabItem.tag
+        self.highlightTitleIndex(index)
+        delegate?.tabbedContainerHeaderDidSelectItem(atIndex: tabItem.tag)
     }
     
 }
