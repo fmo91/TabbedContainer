@@ -74,7 +74,7 @@ public class TabItem: UIView {
         self.titleLabel.translatesAutoresizingMaskIntoConstraints = false
         
         NSLayoutConstraint(item: self, attribute: .top      , relatedBy: .equal, toItem: titleLabel, attribute: .top        , multiplier: 1.0, constant: 0.0    ).isActive = true
-        NSLayoutConstraint(item: self, attribute: .leading  , relatedBy: .equal, toItem: titleLabel, attribute: .leading    , multiplier: 1.0, constant: 10.0   ).isActive = true
+        NSLayoutConstraint(item: self, attribute: .leading  , relatedBy: .equal, toItem: titleLabel, attribute: .leading    , multiplier: 1.0, constant: -10.0   ).isActive = true
         NSLayoutConstraint(item: self, attribute: .trailing , relatedBy: .equal, toItem: titleLabel, attribute: .trailing   , multiplier: 1.0, constant: 10.0   ).isActive = true
         NSLayoutConstraint(item: self, attribute: .bottom   , relatedBy: .equal, toItem: titleLabel, attribute: .bottom     , multiplier: 1.0, constant: 0.0    ).isActive = true
     }

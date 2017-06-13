@@ -23,10 +23,34 @@ class ViewController: UIViewController {
         let vc3 = UIViewController()
         vc3.view.backgroundColor = .green
         
+        let vc4 = UIViewController()
+        vc4.view.backgroundColor = .red
+        
+        let vc5 = UIViewController()
+        vc5.view.backgroundColor = .blue
+        
+        let vc6 = UIViewController()
+        vc6.view.backgroundColor = .green
+        
+        let vc7 = UIViewController()
+        vc7.view.backgroundColor = .red
+        
+        let vc8 = UIViewController()
+        vc8.view.backgroundColor = .blue
+        
+        let vc9 = UIViewController()
+        vc9.view.backgroundColor = .green
+        
         let items = [
             TabbedContainerItem(title: "VC1", viewController: vc1),
             TabbedContainerItem(title: "VC2", viewController: vc2),
-            TabbedContainerItem(title: "VC3", viewController: vc3)
+            TabbedContainerItem(title: "VC3", viewController: vc3),
+            TabbedContainerItem(title: "VC4", viewController: vc4),
+            TabbedContainerItem(title: "VC5", viewController: vc5),
+            TabbedContainerItem(title: "VC6", viewController: vc6),
+            TabbedContainerItem(title: "VC7", viewController: vc7),
+            TabbedContainerItem(title: "VC8", viewController: vc8),
+            TabbedContainerItem(title: "VC9", viewController: vc9)
         ]
         
         let tabbedContainer = TabbedContainer(on: self)

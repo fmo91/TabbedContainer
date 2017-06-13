@@ -139,7 +139,7 @@ public class TabbedContainerHeader: UIView {
             if tabItems.count <= self.maximumSimultaneousItems {
                 NSLayoutConstraint(item: item, attribute: .width, relatedBy: .greaterThanOrEqual, toItem: self.scrollView, attribute: .width, multiplier: 1 / CGFloat(tabItems.count), constant: 0.0).isActive = true
             } else {
-                NSLayoutConstraint(item: item, attribute: .width, relatedBy: .greaterThanOrEqual, toItem: self.scrollView, attribute: .width, multiplier: 1 / CGFloat(tabItems.count), constant: -20.0).isActive = true
+                NSLayoutConstraint(item: item, attribute: .width, relatedBy: .greaterThanOrEqual, toItem: self.scrollView, attribute: .width, multiplier: 1 / CGFloat(self.maximumSimultaneousItems), constant: -20.0).isActive = true
             }
             NSLayoutConstraint(item: item, attribute: .top, relatedBy: .equal, toItem: self.mainContainer, attribute: .top, multiplier: 1.0, constant: 0.0).isActive = true
             NSLayoutConstraint(item: item, attribute: .bottom, relatedBy: .equal, toItem: self.mainContainer, attribute: .bottom, multiplier: 1.0, constant: 0.0).isActive = true
@@ -194,6 +194,18 @@ public class TabbedContainerHeader: UIView {
         }
     }
     
+    private func adjustScrollOffset(forItemAtIndex index: Int) {
+        let item: TabItem = items[index]
+        let itemCenter: CGFloat = item.frame.midX
+        
+        let offsetX: CGFloat = min(max(0, itemCenter - scrollView.frame.width / 2.0), scrollView.contentSize.width - scrollView.frame.width)
+        let offsetY: CGFloat = 0.0
+        
+        let offset: CGPoint = CGPoint(x: offsetX, y: offsetY)
+        
+        self.scrollView.setContentOffset(offset, animated: true)
+    }
+    
     public func setTitleNames(_ titles: [String]) {
         self.titles = titles
         self.configureForState()
@@ -205,6 +217,7 @@ public class TabbedContainerHeader: UIView {
         self.selectedTitleIndex = index
         self.highlightTitle(at: index)
         self.moveIndicator(to: index)
+        self.adjustScrollOffset(forItemAtIndex: index)
     }
     
     @objc private func tabItemPressed(sender: UITapGestureRecognizer) {
